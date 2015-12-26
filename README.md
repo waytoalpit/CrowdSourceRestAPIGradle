@@ -1,2 +1,2 @@
 # CrowdSourceRestAPIGradle
-Java + Jersey + + Mongo + Gradle + Tomcat7
+Java + Jersey + Mongo + Gradle + Tomcat7
