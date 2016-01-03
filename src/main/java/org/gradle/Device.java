@@ -11,8 +11,7 @@ public class Device {
 	private String ue_battery_power;
 	private int ue_channel_scanned;
 	private String mac;
-	private double ue_channel_scanned_power;
-
+	
 	@XmlElement
 	public String getLast_scanned() {
 		return last_scanned;
@@ -47,15 +46,6 @@ public class Device {
 
 	public void setMac(String mac) {
 		this.mac = mac;
-	}
-
-	@XmlElement
-	public double getUe_channel_scanned_power() {
-		return ue_channel_scanned_power;
-	}
-
-	public void setUe_channel_scanned_power(double ue_channel_scanned_power) {
-		this.ue_channel_scanned_power = ue_channel_scanned_power;
 	}
 
 	@XmlElement

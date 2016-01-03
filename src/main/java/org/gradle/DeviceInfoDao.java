@@ -56,8 +56,7 @@ public class DeviceInfoDao {
 				device.setLast_scanned((String) o.get("last_scanned"));
 				device.setMac((String) o.get("mac"));
 				device.setUe_battery_power((String) o.get("ue_battery_power"));
-				device.setUe_channel_scanned((Integer) o.get("ue_channel_scanned"));
-				device.setUe_channel_scanned_power((Double) o.get("ue_channel_scanned_power"));
+				device.setUe_channel_scanned(Integer.parseInt((String) o.get("ue_channel_scanned")));
 				DBObject dbObject = (DBObject) o.get("loc");
 
 				Location location = new Location();
