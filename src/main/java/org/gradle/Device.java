@@ -1,5 +1,7 @@
 package org.gradle;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -11,6 +13,8 @@ public class Device {
 	private String ue_battery_power;
 	private int ue_channel_scanned;
 	private String mac;
+	private int pilot;
+	private List<String> fft;
 	
 	@XmlElement
 	public String getLast_scanned() {
@@ -57,4 +61,21 @@ public class Device {
 		this.loct = loct;
 	}
 
+	@XmlElement
+	public int getPilot() {
+		return pilot;
+	}
+
+	public void setPilot(int pilot) {
+		this.pilot = pilot;
+	}
+
+	@XmlElement
+	public List<String> getFft() {
+		return fft;
+	}
+
+	public void setFft(List<String> fft) {
+		this.fft = fft;
+	}
 }

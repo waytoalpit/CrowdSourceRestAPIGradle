@@ -9,14 +9,12 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/DeviceService")
 public class DeviceService {
-	
 	DeviceInfoDao deviceInfoDao = new DeviceInfoDao();
-   
-   @GET
-   @Path("/deviceinfo")
-   @Produces(MediaType.APPLICATION_JSON)
-   public List<Device> getDevices(){
-      return deviceInfoDao.getAllDevices();
-   }
-
+	
+	@GET
+	@Path("/deviceinfo")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Device> getDevices(){
+		return deviceInfoDao.getAllDevices();
+	}
 }

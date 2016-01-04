@@ -9,15 +9,12 @@ import com.mongodb.DB;
 import com.mongodb.MongoClient;
 
 public class Connection {
-
 	Logger log = Logger.getLogger("Connection");
 	Properties prop = null;
-
 	MongoClient mongoClient = null;
 	DB db = null;
 
 	public Connection() {
-
 		prop = new Properties();
 		try {
 			prop.load(getClass().getResourceAsStream("config.properties"));
@@ -27,31 +24,24 @@ public class Connection {
 	}
 
 	public boolean authenticateDB() {
-
 		String username = prop.getProperty("username");
 		String password = prop.getProperty("password");
 		boolean auth = db.authenticate(username, password.toCharArray());
 		log.info("Authentication done: " + auth);
-
 		return auth;
 	}
 
 	public DB connectMongoDB() {
-
 		try {
-
 			String dburl = prop.getProperty("dburl");
 			String port = prop.getProperty("port");
-
 			mongoClient = new MongoClient(dburl, Integer.parseInt(port));
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
-
 		String selectedDB = prop.getProperty("database");
 		db = mongoClient.getDB(selectedDB);
 		log.info("Connect to SpecsenseDB database successfully");
 		return db;
-
 	}
 }
