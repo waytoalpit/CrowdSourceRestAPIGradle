@@ -179,7 +179,7 @@ public class DeviceInfoDao {
 
 			List circle = new ArrayList();
 			circle.add(new double[] { Double.parseDouble(x), Double.parseDouble(y) });
-			circle.add(Double.parseDouble(radius));
+			circle.add(Double.parseDouble(radius)/3959.0);
 			BasicDBObject query = new BasicDBObject("loc",
 					new BasicDBObject("$within", new BasicDBObject("$center", circle)));
 			DBCursor cursor = coll.find(query);
