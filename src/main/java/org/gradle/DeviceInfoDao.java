@@ -213,4 +213,40 @@ public class DeviceInfoDao {
 		return data;
 	}
 
+	public Device getLastSeenDevice() {
+		
+		Device device = new Device();
+		try {
+
+			String onlineDeviceCollection = prop.getProperty("deviceCollectionReg");
+			DBCollection coll = db.getCollection(onlineDeviceCollection);
+			log.info("Collection Registered_UE selected successfully");
+
+			DBCursor cursor = coll.find().sort( new BasicDBObject( "seen" , 1 ));
+			log.info("Retrieving data");
+
+			while (cursor.hasNext()) {
+				DBObject o = cursor.next();
+				device.setCount(o.get("count").toString());
+				device.setUe_battery_power((String) o.get("ue_battery_power"));
+				device.setUe_model((String) o.get("ue_model"));
+				device.setUe_status((String) o.get("ue_status"));
+				device.setSeen((String) o.get("seen"));
+				
+				DBObject dbObject = (DBObject) o.get("loc");
+				Location location = new Location();
+				location.setType((String) dbObject.get("type"));
+				location.setCoordinates((List<Double>) dbObject.get("coordinates"));
+				device.setLoct(location);
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error occured");
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+		} finally {
+			db.cleanCursors(true);
+			conn.mongoClient.close();
+		}
+		return device;
+	}
 }

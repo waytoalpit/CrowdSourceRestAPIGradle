@@ -16,6 +16,7 @@ public class Device {
 	private String count;
 	private String ue_model;
 	private String ue_status;
+	private String seen;
 	
 	@XmlElement
 	public String getCount() {
@@ -105,6 +106,15 @@ public class Device {
 
 	public void setLoct(Location loct) {
 		this.loct = loct;
+	}
+
+	@XmlElement
+	public String getSeen() {
+		return seen;
+	}
+
+	public void setSeen(String seen) {
+		this.seen = seen;
 	}
 
 }

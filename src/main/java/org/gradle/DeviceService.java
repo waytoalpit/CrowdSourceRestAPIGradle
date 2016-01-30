@@ -41,4 +41,11 @@ public class DeviceService {
 			@PathParam("radius") String radius) {
 		return deviceInfoDao.getDevicesByRadius(x, y, radius);
 	}
+	
+	@GET
+	@Path("/lastseen")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Device getLastSeen() {
+		return deviceInfoDao.getLastSeenDevice();
+	}
 }
