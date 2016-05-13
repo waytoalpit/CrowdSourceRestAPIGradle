@@ -17,6 +17,7 @@ public class Device {
 	private String ue_model;
 	private String ue_status;
 	private String seen;
+	private double totalpower; 
 	
 	@XmlElement
 	public String getCount() {
@@ -115,6 +116,15 @@ public class Device {
 
 	public void setSeen(String seen) {
 		this.seen = seen;
+	}
+
+	@XmlElement
+	public double getTotalpower() {
+		return totalpower;
+	}
+
+	public void setTotalpower(double totalpower) {
+		this.totalpower = totalpower;
 	}
 
 }

@@ -1,32 +1,17 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.4'
-    }
-}
-
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'war'
-apply plugin: 'com.bmuschko.tomcat'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-	def tomcatVersion = '7.0.67'
-    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
-           "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
-           "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
-	
 	compile 'junit:junit:4.12'
 	compile 'commons-collections:commons-collections:3.2'
 	compile 'javax.servlet:javax.servlet-api:4.0.0-b01'
-    compile 'com.sun.jersey:jersey-bundle:1.19'
-    compile 'org.mongodb:mongo-java-driver:2.10.1'
+    	compile 'com.sun.jersey:jersey-bundle:1.19'
+    	compile 'org.mongodb:mongo-java-driver:2.10.1'
 }
 
 sourceSets {

@@ -16,7 +16,14 @@ public class DeviceService {
 	@GET
 	@Path("/deviceinfo")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Device> getDevices() {
+	public List<Device> getDevicesInfo() {
+		return deviceInfoDao.getAllDevicesInfo();
+	}
+	
+	@GET
+	@Path("/alldeviceinfo")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Device> getAllDevices() {
 		return deviceInfoDao.getAllDevices();
 	}
 
@@ -35,7 +42,7 @@ public class DeviceService {
 	}
 
 	@GET
-	@Path("{x}/{y}/{radius}")
+	@Path("/withinradius/{x}/{y}/{radius}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Device> getdevicesByRadius(@PathParam("x") String x, @PathParam("y") String y,
 			@PathParam("radius") String radius) {
@@ -48,4 +55,33 @@ public class DeviceService {
 	public Device getLastSeen() {
 		return deviceInfoDao.getLastSeenDevice();
 	}
+	
+	
+	@GET
+	@Path("/computepower/{x}/{y}/{num}/{max}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ComputePowerView computerPower(@PathParam("x") String x, @PathParam("y") String y,
+			@PathParam("num") String num, @PathParam("max") String max) {
+		
+		long startTime = System.currentTimeMillis();
+		ComputePowerView ret= deviceInfoDao.computerPowerIDW(x, y, num, max);
+		long estimatedTime = System.currentTimeMillis() - startTime;
+		ret.setTime(String.valueOf(estimatedTime));
+		System.out.println("Meaurement Time: "+estimatedTime);
+		return ret;
+	}
+	
+	@GET
+	@Path("/bestchannel/{address}/{radius}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ComputeBestChannel computeBestChannel(@PathParam("address") String address, @PathParam("radius") int radius) {
+		
+		long startTime = System.currentTimeMillis();
+		ComputeBestChannel ret= deviceInfoDao.computeBestChannel(address, radius);
+		long estimatedTime = System.currentTimeMillis() - startTime;
+		ret.setTime(String.valueOf(estimatedTime));
+		System.out.println("Meaurement Time: "+estimatedTime);
+		return ret;
+	}
+	
 }
